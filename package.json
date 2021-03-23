@@ -1,0 +1,27 @@
+{
+  "name": "desafio-researchsoftware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordhanemmanuel/desafio-reserachsoftware.git"
+  },
+  "author": "Jordhan Emmanuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordhanemmanuel/desafio-reserachsoftware/issues"
+  },
+  "homepage": "https://github.com/jordhanemmanuel/desafio-reserachsoftware#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "router": "^1.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
