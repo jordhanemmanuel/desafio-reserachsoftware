@@ -1,12 +1,13 @@
 //const path = require('path')
 const express = require('express')
 //const hbs = require('hbs')
+const marcacao = require('./utils/marcacao');
 
 const app = express()
 const herokuPort = process.env.PORT || 3000
 
 //TESTES, DELETAR DEPOIS
-const marcacao = require('./utils/marcacao');
+const testes = require('./utils/testeChamadas')
 //app.use(marcacao);
 app.get("", (req, res) => {
     dadosDaMarcacao = {includedAt:"2021-03-15 15:10:00", employeeId: 123, employerId: 999};
@@ -20,8 +21,17 @@ app.get("", (req, res) => {
             console.log('Status ok:')
             console.log(response)
         }
-    //res.send("Hello world");
-    })
+    });
+});
+
+app.get("/buscaEnd", (req, res) => {
+    testes.buscaEndereco("", (error, response) => {
+        if (!response) {
+            res.send(error)
+        } else {
+            res.send(response)
+        }
+    });
 });
 
 app.listen((herokuPort), () => {
