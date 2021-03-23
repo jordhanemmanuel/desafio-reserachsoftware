@@ -12,9 +12,13 @@ app.get("", (req, res) => {
     dadosDaMarcacao = {includedAt:"2021-03-15 15:10:00", employeeId: 123, employerId: 999};
     marcacao.addMarcacao(dadosDaMarcacao, (error, response) => {
         if (!response) {
-            res.send(JSON.stringify(error))
+            res.send(error)
+            console.log('Status não ok:')
+            console.log(error)
         } else {
-            res.send(JSON.stringify(response))
+            res.send(response)
+            console.log('Status ok:')
+            console.log(response)
         }
     //res.send("Hello world");
     })
