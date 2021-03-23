@@ -23,6 +23,10 @@ app.use(getWeatherRouter)
 // Setup diretorio estatico para o servidor
 app.use(express.static(publicPath))
 */
+app.get("", (req, res) => {
+    res.send("Hello world");
+});
+
 app.listen((herokuPort), () => {
     console.log('Server is up on port ' + herokuPort)
 })
