@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="icon" href="/img/nuvem.png">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="main-content">
+        {{>header}}
+        {{text}}
+        </br>
+        <p><b>Funcionamento:</b></p>
+        <p>Ao digitar o código da empresa e colaborador, é chamada uma API com um payload contendo informações que foram digitadas mais o horário do sistema atual.</p>
+        <p>A estrutura do site é baseado em um outro projeto que fiz no passado, para verificar previsão do tempo, podendo acessar seu repositório na guia de links abaixos.</p>
+        <p>Foi utilizado NodeJS com Handlebars (hbs).</p>
+        </br>
+        <p><b>Links:</b></p>
+        <p><a href="https://github.com/jordhanemmanuel/weather-website">Repositório 'weather-website'</a></p>
+    </div>
+    {{>rodape}}
+</body>
+</html>

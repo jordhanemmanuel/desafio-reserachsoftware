@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="icon" href="/img/nuvem.png">
+    
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="main-content">
+        {{>header}}
+        {{info}}</br>
+        </br>
+        <form>
+            <input type="number" id='numemp' placeholder="Código da Empresa"></br></br>
+            <input type="number" id= 'numcol' placeholder="Código do Colaborador"></br></br>
+            <button>Realizar Marcação</button><label id="message-load"> </label>
+        </form>
+
+        <b><p id="msg-status"></p></b>
+        <p id="msg-empresa">Empresa: </p>
+        <p id="msg-colab">Colaborador: </p>
+        <p id="msg-dadosmarcacao">Marcação realizada em: </p>
+    </div>
+
+    {{>rodape}}
+
+    <script src="js/app.js"></script>
+</body>
+</html>
