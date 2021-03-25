@@ -7,7 +7,7 @@ router.get("", (req,res) => {
     res.render('index', {
         title: 'Desafio Research Software Engineer',
         name: 'Jordhan Emmanuel',
-        info: 'Insira o código da Empresa e Funcionário que deseja registrar a marcação:'
+        info: 'Insira o código da Empresa e Colaborador que deseja registrar a marcação:'
     })    
 })
 
