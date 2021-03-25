@@ -23,31 +23,6 @@ app.use(marcacao)
 
 // Setup diretorio estatico para o servidor
 app.use(express.static(publicPath))
-/*
-app.get("", (req, res) => {
-    dadosDaMarcacao = {includedAt:"2021-03-15 15:10:00", employeeId: 123, employerId: 999};
-    directmarcacao.addMarcacao(dadosDaMarcacao, (error, response) => {
-        if (!response) {
-            res.send(error)
-            console.log('Status não ok:')
-            console.log(error)
-        } else {
-            res.send(response)
-            console.log('Status ok:')
-            console.log(response)
-        }
-    });
-});*/
-
-/*app.get("/buscaEnd", (req, res) => {
-    testes.buscaEndereco("", (error, response) => {
-        if (!response) {
-            res.send(error)
-        } else {
-            res.send(response)
-        }
-    });
-});*/
 
 app.listen((herokuPort), () => {
     console.log('Server is up on port ' + herokuPort)
