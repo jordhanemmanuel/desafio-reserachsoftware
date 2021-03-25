@@ -1,8 +1,6 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const directmarcacao = require('./utils/marcacao');
-const testes = require('./utils/testeChamadas')
 
 const app = express()
 const herokuPort = process.env.PORT || 3000
