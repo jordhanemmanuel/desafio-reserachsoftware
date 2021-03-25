@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const marcarcao = require('../utils/marcacao')
+const util = require('../utils/util')
 
 router.get("", (req,res) => {
     res.render('index', {
@@ -21,6 +22,10 @@ router.post('/realizarMarcacao', (req, ret) => {
     const payloadData = req.body
     //console.log("entrou no post")
     //console.log(payloadData)
+    if (!payloadData.includedAt) {
+        //console.log("Data de marcação não encontrada, gerando nova data...")
+        payloadData.includedAt = util.getDatAtu()
+    }
     marcarcao.addMarcacao(payloadData, (err, res) => {
         if (!res) {
             return ret.status(406).json({

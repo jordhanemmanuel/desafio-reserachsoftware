@@ -29,15 +29,13 @@ marcForm.addEventListener('submit', async (e) => { //e é abraviação para even
         employeeId: numemp.value, 
         employerId: numcol.value    
     }
-    console.log("Payload data: ");
+    console.log("Payload enviado: ");
     console.log(payloadData)
     await fetch("/realizarMarcacao", {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(payloadData)
     }).then(async (response) => {
-        //const data = await response.json()
-        //console.log(data)
         await response.json().then((data) => {
             messageLoad.textContent = '';
             if (data.error) {
@@ -52,6 +50,7 @@ marcForm.addEventListener('submit', async (e) => { //e é abraviação para even
                 msgTitJson.textContent = 'Retorno total: '
                 msgTxtJson.textContent = JSON.stringify(data, null, 2)
             }
+            console.log("Payload retornado: ")
             console.log(data)
         })
     })
@@ -64,14 +63,27 @@ function cleanFields() {
     msgdados.textContent    = ''
 }
 
-function getDatAtu() {
-    let data = new Date();
-    let dia = data.getDate();
-    let mes = (data.getMonth()+1).toString(); 
-    let ano = data.getFullYear();
-    let hora = data.getHours();
-    let min = data.getMinutes();
-    let sec = data.getSeconds();
-    console.log(ano+"-"+mes+"-"+dia+" "+hora+":"+min+":"+sec)
+const getDatAtu = () => {
+    let date = new Date();
+    let dia = date.getDate();
+    let mes = (date.getMonth()+1); 
+    let ano = date.getFullYear();
+    let hora = date.getHours();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+    dia = addZero(dia, 2);
+    mes = addZero(mes, 2);
+    hora = addZero(hora, 2);
+    min = addZero(min, 2);
+    sec = addZero(sec, 2);
     return ano+"-"+mes+"-"+dia+" "+hora+":"+min+":"+sec;
+}
+
+const addZero = (num, qtd) => {
+    resultado = num.toString()
+    tamanho = resultado.length
+    for (tamanho; tamanho < qtd; tamanho++) {
+        resultado = "0"+resultado;
+    }
+    return resultado
 }
