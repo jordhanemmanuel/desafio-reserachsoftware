@@ -8,6 +8,10 @@ const msgStatus     = document.querySelector('#msg-status')
 const msgEmp        = document.querySelector('#msg-empresa')
 const msgCol        = document.querySelector('#msg-colab')
 const msgdados      = document.querySelector('#msg-dadosmarcacao')
+const msgTitRet     = document.querySelector('#msg-titRet')
+const msgTxtRet     = document.querySelector('#msg-txtRet')
+const msgTitJson    = document.querySelector('#msg-titJson')
+const msgTxtJson    = document.querySelector('#msg-txtJson')
 const urlInit       = "http://localhost:3000"
 const auxEmp        = msgEmp.textContent
 const auxCol        = msgCol.textContent
@@ -25,15 +29,31 @@ marcForm.addEventListener('submit', async (e) => { //e é abraviação para even
         employeeId: numemp.value, 
         employerId: numcol.value    
     }
+    console.log("Payload data: ");
     console.log(payloadData)
     await fetch("/realizarMarcacao", {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(payloadData)
     }).then(async (response) => {
-        console.log("passou aqui")
-        const respostinha = await response.json()
-        console.log(respostinha)
+        //const data = await response.json()
+        //console.log(data)
+        await response.json().then((data) => {
+            messageLoad.textContent = '';
+            if (data.error) {
+                msgStatus.textContent = data.error    
+            } else {
+                msgStatus.textContent = data.mensagemRetorno
+                msgEmp.textContent = auxEmp + data.dadosMarcacao.employerId
+                msgCol.textContent = auxCol + data.dadosMarcacao.employeeId
+                msgdados.textContent = auxDados + data.dadosMarcacao.includedAt
+                msgTitRet.textContent = 'Retorno da API: '
+                msgTxtRet.textContent = JSON.stringify(data.dados)
+                msgTitJson.textContent = 'Retorno total: '
+                msgTxtJson.textContent = JSON.stringify(data, null, 2)
+            }
+            console.log(data)
+        })
     })
 })
 

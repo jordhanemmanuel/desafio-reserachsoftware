@@ -1,5 +1,6 @@
 const express = require('express')
 const router = new express.Router()
+const marcarcao = require('../utils/marcacao')
 
 router.get("", (req,res) => {
     res.render('index', {
@@ -16,11 +17,27 @@ router.get('/about', (req, res) => {
     })
 })
 
-router.post('/realizarMarcacao', (req, res) => {
-    console.log("entrou no post")
-    console.log(req.body)
-    res.status(200).json({
-        mensagemRetorno: "deu pau no bot"
+router.post('/realizarMarcacao', (req, ret) => {
+    const payloadData = req.body
+    //console.log("entrou no post")
+    //console.log(payloadData)
+    marcarcao.addMarcacao(payloadData, (err, res) => {
+        if (!res) {
+            return ret.status(406).json({
+                error:err, errorID: 0, errorMessage: 'Não foi possível realizar a marcação'    
+            })
+        }
+
+        const {status, statusText, data} = res
+
+        ret.status(200).json({
+            mensagemRetorno: "Marcação realizada com sucesso!",
+            status,
+            statusText,
+            dados: data,
+            dadosMarcacao: payloadData
+        })
+
     })
 })
 
